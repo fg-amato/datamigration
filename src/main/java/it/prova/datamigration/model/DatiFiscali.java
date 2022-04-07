@@ -9,8 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 @Entity
 @Table(name = "datifiscali")
+@ConfigurationProperties(prefix = "spring.datasource")
 public class DatiFiscali {
 
 	@Id
@@ -67,6 +70,11 @@ public class DatiFiscali {
 
 	public void setCodiceFiscale(String codiceFiscale) {
 		this.codiceFiscale = codiceFiscale;
+	}
+
+	@Override
+	public String toString() {
+		return "DatiFiscali [id=" + id + ", codiceFiscale=" + codiceFiscale + "]";
 	}
 
 }

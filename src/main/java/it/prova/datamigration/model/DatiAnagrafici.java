@@ -1,5 +1,6 @@
 package it.prova.datamigration.model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.crypto.Data;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Entity
 @Table(name = "datianagrafici")
+@ConfigurationProperties(prefix = "spring.datasource")
 public class DatiAnagrafici {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +29,7 @@ public class DatiAnagrafici {
 	@Column(name = "cognome")
 	private String cognome;
 	@Column(name = "datadinascita")
-	private Data dataDiNascita;
+	private Date dataDiNascita;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	private DatiFiscali datiFiscali;
@@ -38,14 +41,14 @@ public class DatiAnagrafici {
 		super();
 	}
 
-	public DatiAnagrafici(String nome, String cognome, Data dataDiNascita) {
+	public DatiAnagrafici(String nome, String cognome, Date dataDiNascita) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataDiNascita = dataDiNascita;
 	}
 
-	public DatiAnagrafici(Long id, String nome, String cognome, Data dataDiNascita) {
+	public DatiAnagrafici(Long id, String nome, String cognome, Date dataDiNascita) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -53,7 +56,7 @@ public class DatiAnagrafici {
 		this.dataDiNascita = dataDiNascita;
 	}
 
-	public DatiAnagrafici(String nome, String cognome, Data dataDiNascita, DatiFiscali datiFiscali) {
+	public DatiAnagrafici(String nome, String cognome, Date dataDiNascita, DatiFiscali datiFiscali) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
@@ -61,7 +64,7 @@ public class DatiAnagrafici {
 		this.datiFiscali = datiFiscali;
 	}
 
-	public DatiAnagrafici(Long id, String nome, String cognome, Data dataDiNascita, DatiFiscali datiFiscali) {
+	public DatiAnagrafici(Long id, String nome, String cognome, Date dataDiNascita, DatiFiscali datiFiscali) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -70,7 +73,7 @@ public class DatiAnagrafici {
 		this.datiFiscali = datiFiscali;
 	}
 
-	public DatiAnagrafici(String nome, String cognome, Data dataDiNascita, Set<Sinistro> sinistri) {
+	public DatiAnagrafici(String nome, String cognome, Date dataDiNascita, Set<Sinistro> sinistri) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
@@ -78,7 +81,7 @@ public class DatiAnagrafici {
 		this.sinistri = sinistri;
 	}
 
-	public DatiAnagrafici(Long id, String nome, String cognome, Data dataDiNascita, DatiFiscali datiFiscali,
+	public DatiAnagrafici(Long id, String nome, String cognome, Date dataDiNascita, DatiFiscali datiFiscali,
 			Set<Sinistro> sinistri) {
 		super();
 		this.id = id;
@@ -113,11 +116,11 @@ public class DatiAnagrafici {
 		this.cognome = cognome;
 	}
 
-	public Data getDataDiNascita() {
+	public Date getDateDiNascita() {
 		return dataDiNascita;
 	}
 
-	public void setDataDiNascita(Data dataDiNascita) {
+	public void setDateDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
 
@@ -136,4 +139,11 @@ public class DatiAnagrafici {
 	public void setSinistri(Set<Sinistro> sinistri) {
 		this.sinistri = sinistri;
 	}
+
+	@Override
+	public String toString() {
+		return "DatiAnagrafici [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", dataDiNascita="
+				+ dataDiNascita + "]";
+	}
+
 }
