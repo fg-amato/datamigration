@@ -2,6 +2,8 @@ package it.prova.datamigration.dto;
 
 import java.util.Date;
 
+import it.prova.datamigration.model.DatiFiscali;
+
 public class Assicurato {
 
 	private String nome;
@@ -59,4 +61,9 @@ public class Assicurato {
 		this.numeroSinistri = numeroSinistri;
 	}
 
+	public static Assicurato createAssicuratoFromDatiFiscali(DatiFiscali instance) {
+		return new Assicurato(instance.getDatiAnagrafici().getNome(), instance.getDatiAnagrafici().getCognome(),
+				instance.getDatiAnagrafici().getDateDiNascita(), instance.getCodiceFiscale(),
+				instance.getDatiAnagrafici().getSinistri().size());
+	}
 }

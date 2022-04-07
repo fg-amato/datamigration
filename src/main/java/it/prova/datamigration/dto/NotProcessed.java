@@ -1,5 +1,7 @@
 package it.prova.datamigration.dto;
 
+import it.prova.datamigration.model.DatiFiscali;
+
 public class NotProcessed {
 
 	private Long oldDbId;
@@ -27,4 +29,7 @@ public class NotProcessed {
 		this.codiceFiscale = codiceFiscale;
 	}
 
+	public static NotProcessed createNotProcessedFromModel(DatiFiscali instance) {
+		return new NotProcessed(instance.getId(), instance.getCodiceFiscale());
+	}
 }
